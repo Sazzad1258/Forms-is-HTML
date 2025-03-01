@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+    
+        form {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+    
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+    
+        div {
+            margin-bottom: 15px;
+        }
+    
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+    
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease-in-out;
+        }
+    
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+    
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+    
+        input:focus, select:focus, textarea:focus {
+            border: 2px solid #007bff;
+            box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+        }
+    
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+    
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+    
+        p {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+    </style>
+    
+</head>
+<body>
+    <script>
+        assalamualikum
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+            const inputs = document.querySelectorAll("input, select, textarea");
+            const button = document.querySelector("button");
+    
+            // Highlight inputs on focus
+            inputs.forEach(input => {
+                input.addEventListener("focus", function () {
+                    this.style.border = "2px solid #007bff";
+                    this.style.boxShadow = "0px 0px 5px rgba(0, 123, 255, 0.5)";
+                });
+    
+                input.addEventListener("blur", function () {
+                    this.style.border = "1px solid #ccc";
+                    this.style.boxShadow = "none";
+                });
+            });
+    
+            // Button hover effect
+            button.addEventListener("mouseover", function () {
+                this.style.backgroundColor = "#0056b3";
+                this.style.transform = "scale(1.05)";
+            });
+    
+            button.addEventListener("mouseleave", function () {
+                this.style.backgroundColor = "#007bff";
+                this.style.transform = "scale(1)";
+            });
+    
+            // Validate required fields before form submission
+            form.addEventListener("submit", function (event) {
+                let isValid = true;
+    
+                inputs.forEach(input => {
+                    if (input.hasAttribute("required") && input.value.trim() === "") {
+                        isValid = false;
+                        input.style.border = "2px solid red";
+                    } else {
+                        input.style.border = "1px solid #ccc";
+                    }
+                });
+    
+                if (!isValid) {
+                    event.preventDefault();
+                    alert("Please fill in all required fields.");
+                }
+            });
+        });
+    </script>
+    
+    
+    
+    <form action="submit.php" method="POST">
+        <div>
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Enter name" required>
+        </div>
+
+        <div>
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" name="phone" placeholder="Enter phone" required>
+        </div>
+
+        <div>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="Enter email" required>
+        </div>
+
+        <div>
+            <label for="password">Password</label>
+            <input id="password" type="password" name="password" placeholder="Enter password" required>
+        </div>
+
+        <div>
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date" name="dob" required>
+        </div>
+
+        <div>
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="" disabled selected>Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div>
+            <p>Subscription Plan</p>
+            <label for="basic">Basic</label>
+            <input id="basic" type="radio" name="subscription" value="basic">
+            
+            <label for="premium">Premium</label>
+            <input id="premium" type="radio" name="subscription" value="premium">
+            
+            <label for="vip">VIP</label>
+            <input id="vip" type="radio" name="subscription" value="vip">
+        </div>
+
+        <div>
+            <input id="terms" type="checkbox" name="terms" required>
+            <label for="terms">I agree to the terms and conditions</label>
+        </div>
+
+        <div>
+            <label for="comments">Comments</label>
+            <textarea id="comments" name="comments" placeholder="Enter your comments"></textarea>  
+        </div>
+
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>
